@@ -59,33 +59,55 @@ Touches are represented by the Touch object.
 
 These event types belongs to the TouchEvent Object:
 
-1. Touchstart
+1. Touchstart.
 Sent when the user places a touch point on the touch surface. The event's target will be the element in which the touch occurred.
 
-2. Touchmove
+2. Touchmove.
 Sent when the user moves a touch point along the surface. The event's target is the same element that received the touchstart
 event corresponding to the touch point, even if the touch point has moved outside that element.
 This event is also sent if the values of the radius, rotation angle, or force attributes of a touch point change.
 
-3. Touchend
+3. Touchend.
 Sent when the user removes a touch point from the surface. This is also sent if the touch point moves off the edge of the surface;
 for example, if the user's finger slides off the edge of the screen.
 The event's target is the same element that received the touchstartevent corresponding to the touch point,
 even if the touch point has moved outside that element.
 The touch point (or points) that were removed from the surface can be found in the TouchList specified by the changedTouches attribute.
 
-4. Touchcancel
+4. Touchcancel.
 Sent when a touch point has been disrupted in some way. There are several possible reasons why this might happen
 (and the exact reasons will vary from device to device, as well as browser to browser):
-•	An event of some kind occurred that canceled the touch; this might happen if a modal alert pops up during the interaction.
-•	The touch point has left the document window and moved into the browser's UI area, a plug-in, or other external content.
-•	The user has placed more touch points on the screen than can be supported, in which case the earliest Touch in the TouchList gets canceled.
+1.	An event of some kind occurred that canceled the touch; this might happen if a modal alert pops up during the interaction.
+2.	The touch point has left the document window and moved into the browser's UI area, a plug-in, or other external content.
+3.	The user has placed more touch points on the screen than can be supported, in which case the earliest Touch in the TouchList gets canceled.
+
+## PointerEvent
+
+To reduce the cost of coding to multiple input types and also to help with the above described ambiguity with Mouse Events,
+this specifications defines a more abstract form of input, called a pointer. A pointer can be any point of contact
+on the screen made by a mouse cursor, pen, touch (including multi-touch), or other pointing input device.
+This model makes it easier to write sites and applications that work well no matter what hardware the user has.
+
+These event types belongs to the PointerEvent Object:
+
+1. Pointerover. A pointing device is moved into the hit test boundaries of an element.
+2. Pointerenter. A pointing device is moved into the hit test boundaries of an element or one of its descendants,
+including as a result of a pointerdown event from a device that does not support hover.
+3. Pointerdown. A pointer enters the active buttons state.
+4. Pointermove. A pointer changes coordinates.
+5. Pointerup. A pointer leaves the active buttons state.
+6. Pointercancel.
+7. Pointerout.
+8. Pointerleave. A pointing device is moved out of the hit test boundaries of an element and all of its descendants,
+including as a result of a pointerup and pointercancel events from a device that does not support hover
+9. Gotpointercapture. An element receives pointer capture.
+10. Lostpointercapture. Pointer capture is released for a pointer.
 
 ## Another Events:
 
-The FocusEvent interface represents focus-related events like focus, blur, focusin, or focusout.
-The InputEvent interface represents an event notifying of editable content change.
-The WheelEvent interface represents events that occur due to the user moving a mouse wheel or similar input device.
+1. The FocusEvent interface represents focus-related events like focus, blur, focusin, or focusout.
+2. The InputEvent interface represents an event notifying of editable content change.
+3. The WheelEvent interface represents events that occur due to the user moving a mouse wheel or similar input device.
 
 ## Event object
 
@@ -107,6 +129,8 @@ document.addEventListener("click", myFunction);
 document.addEventListener("click", someOtherFunction, true);
 ```
 
+If the third argument is true, the event handler is registered as a capturing event handler for invocation during this first phase of event propagation.
+
 There is one more way called “on” property onclick, onmouseover, and so on. But is not as useful,
 as it does not allow us to add multiple event listeners on the same element.
 
@@ -123,9 +147,9 @@ An event object is passed as an argument (optional) to the handler which contain
 ## Event propagation
 
 3 phases of event propagation
-	1) Capturing phase;
-	2) Target phase;
-	3) Bubbling phase;
+1. Capturing phase;
+2. Target phase;
+3. Bubbling phase.
 
 Event propagation is the process by which the browser decides which objects to trigger event handlers on.
 For events that are specific to a single object (such as the load event on the Window object), no propagation is required.
@@ -175,3 +199,5 @@ It is sometimes more convenient to register a single event handler on a Document
   <li><a href="#">Item 4</a></li>
 </ul>
 ```
+
+##  Thanks for attention
