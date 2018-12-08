@@ -1,3 +1,5 @@
+[Ссылка на презентацию](https://jadgptw.github.io/presentation/)
+
 # DOM Events
 Client-side JavaScript programs use an asynchronous event-driven programming model.
 In this style of programming, the web browser generates an event whenever something interesting happens
